@@ -133,6 +133,7 @@ function createHTML(options = {}) {
         )
 
         function formatParagraph(async){
+            if (async === true) return;
             (async ? asyncExec: exec)(formatBlock, '<' + editor.paragraphSeparator + '>' );
         }
 
@@ -668,16 +669,9 @@ function createHTML(options = {}) {
                     // cancel paste
                     e.preventDefault();
                     // insert text manually
-                    exec("insertText", text);
+                    // exec("insertText", text);
                 }
             });
-            addEventListener(content, 'compositionstart', function(event){
-                compositionStatus = 1;
-            })
-            addEventListener(content, 'compositionend', function (event){
-                compositionStatus = 0;
-                paragraphStatus && formatParagraph(true);
-            })
 
             var message = function (event){
                 var msgData = JSON.parse(event.data), action = Actions[msgData.type];
