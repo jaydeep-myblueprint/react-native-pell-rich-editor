@@ -109,6 +109,7 @@ export default class RichTextEditor extends Component {
   componentWillUnmount() {
     this.unmount = true;
     this.keyboardEventListeners.forEach(eventListener => eventListener.remove());
+    this.dismissKeyboard();
   }
 
   _onKeyboardWillShow(event) {
